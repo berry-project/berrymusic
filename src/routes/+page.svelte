@@ -1,17 +1,6 @@
 <script>
 	import Header from '../Header.svelte';
 	import myjson from './music.json';
-
-	function downloadFile(path, name) {
-		const link = document.createElement('a');
-		link.href = path;
-		link.download = name;
-
-		document.body.appendChild(link);
-		link.click();
-
-		document.body.removeChild(link);
-	}
 </script>
 
 <div class="container">
@@ -24,7 +13,7 @@
 				Your browser does not support the audio element.
 			</audio>
 			<p></p>
-			<a class="download-btn" on:click={() => downloadFile(music.path, music.name)}>Download</a>
+			<a class="download-btn" href={music.path} download={music.name}>Download</a>
 		</div>
 	{/each}
 </div>
@@ -36,8 +25,8 @@
 
 	.download-btn {
 		font-weight: 600;
-		cursor: pointer;
 		color: #ca2c92;
+		text-decoration: none;
 	}
 
 	.download-btn:hover {
